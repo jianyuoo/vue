@@ -10,7 +10,6 @@ const api = axios.create({
 api.interceptors.request.use(
     config =>{
 const useToken = useTokenStore();
-console.log("请求数据", config);
 if(useToken.token){
     console.log("请求头toekn=====>", useToken.token);
     // 设置请求头
@@ -18,7 +17,6 @@ if(useToken.token){
     config.headers.token = useToken.token;
 }
         return config;
-        
 },
 error =>{
  

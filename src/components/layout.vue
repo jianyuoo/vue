@@ -8,7 +8,7 @@
     <el-main>Main</el-main>
     <el-footer>Footer</el-footer>
   </el-container>
-  <!-- <el-button type="success" @click="Logout">退出登录</el-button> -->
+   <el-button type="success" @click="Logout">退出登录</el-button>
    <el-button type="success" @click="get11">获取用户信息</el-button>
 </template>
 
@@ -44,12 +44,12 @@ const router = useRouter()
 
 const Logout = async () => {
   try {
-    const response = await api.get("/user/logout");
+    const response = await api.post("/v1/logout");
     if (response.data.code === 200) {
       ElMessage.success('退出成功');
       // 清除 token
       useToeknStore().removeToken();
-      router.replace({ name: 'login' });
+      await router.replace({name: 'login'});
     }
   } catch (error) {
     // 登录失败时清除 token 并跳转到登录页
